@@ -19,10 +19,12 @@ Odoo modules related to repairs.
 
 Available addons
 ----------------
-addon | version | maintainers | summary
---- | --- | --- | ---
-[repair_refurbish](repair_refurbish/) | 15.0.1.0.0 |  | Create refurbished products during repair
-[repair_stock_move](repair_stock_move/) | 15.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
+addon | version    | maintainers | summary
+--- |------------| --- | ---
+[mrp_repair_workorder](mrp_repair_workorder/) | 11.0.1.0.0 |  | Mrp Repair and Work order
+[base_repair_config](base_repair_config/) | 11.0.1.0.0 |  | Ongoing Repair Stock Moves Definition in odoo
+[mrp_repair_split_final_product](mrp_repair_split_final_product/) | 11.0.1.0.0 |  | Mrp Repair Split Final Product
+[mrp_repair_discount](mrp_repair_discount/) | 11.0.1.0.0 |  | Repair Discount
 
 [//]: # (end addons)
 

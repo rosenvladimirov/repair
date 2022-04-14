@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_mrp_repair_choice_wizard" model="ir.ui.view">
+        <field name="name">Search repair order</field>
+        <field name="model">mrp.repair.choice</field>
+        <field name="arch" type="xml">
+            <form string="Choice or Scan for repair">
+                <field name="_barcode_scanned" widget="barcode_handler"/>
+                <group>
+                    <field name="repair_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="choice_repair_order" string="Run Repair" type="object"  class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mrp_repair_choice_wizard" model="ir.actions.act_window">
+        <field name="name">Search Repair Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.repair.choice</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_mrp_repair_choice_wizard"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_repair_orders"
+            groups="stock.group_stock_user"
+            name="Orders"
+            parent="mrp_repair.menu_repair_order"/>
+    <menuitem action="mrp_repair.action_repair_order_tree"
+            id="menu_repair_order_kanban"
+            parent="menu_repair_orders"
+            groups="stock.group_stock_user"
+            sequence="10"
+            name="Repairs"/>
+    <menuitem action="action_mrp_repair_choice_wizard"
+            id="menu_repair_order_choice"
+            groups="stock.group_stock_user"
+            name="Search Order"
+            sequence="20"
+            parent="menu_repair_orders"/>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_production_workcenter_form_view_inherit">
+        <field name="name">mrp.production.work.order.form</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="barcode_mrp_workorder.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='add_lot_to_product']" position="replace">
+                <button name="toggle_mark_repair" type="object"
+                    class="oe_stat_button"
+                    icon="fa fa-bug"
+                    barcode_trigger="repair"
+                    attrs="{'invisible': ['|', '|', '|', ('is_produced', '=', True), ('working_state', '=', 'blocked'), ('state', '!=', 'progress'), ('is_user_working', '=', False)]}">
+                        <field name="mark_repair" widget="boolean_button" options="{&quot;terminology&quot;: {&quot;string_true&quot;: &quot;For repair&quot;, &quot;hover_true&quot;: &quot;FOR REPAIR&quot;, &quot;string_false&quot;: &quot;Mark for repair&quot;, &quot;hover_false&quot;: &quot;REPAIR MARK&quot;}}"/>
+                </button>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="add_lot_to_product" type="object" string="Create Lot/SN"
+                    class="oe_stat_button"
+                    icon="fa fa-plus-square"
+                    barcode_trigger="lot"
+                    attrs="{'invisible': ['|', '|', '|', ('is_produced', '=', True), ('working_state', '=', 'blocked'), ('state', '!=', 'progress'), ('is_user_working', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="mrp_production_workcenter_form_view_inherit_note">
+        <field name="name">mrp.production.work.order.form</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Notes">
+                    <group>
+                        <field name="internal_notes_templates" context="{'default_position': 'narration', 'use': True}"
+                               domain="[('position', '=', 'document')]"/>
+                    </group>
+                    <field name="internal_notes" placeholder="Add internal notes..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
